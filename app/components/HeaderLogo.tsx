@@ -16,7 +16,7 @@ const HeaderLogo = ({navToCart}: HeaderLogoProps) => {
       {navToCart && (
         <Pressable onPress={navToCart} style={styles.cartContainer}>
           <Image
-            source={require('../assets/cart2.png')} // Замените на свой логотип
+            source={require('../assets/cart.png')} // Замените на свой логотип
             style={styles.cart}
             resizeMode="contain"
           />

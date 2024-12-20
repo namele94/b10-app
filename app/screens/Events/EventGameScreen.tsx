@@ -4,27 +4,10 @@ import React from 'react';
 const EventGameScreen = () => {
   return (
     <ImageBackground
-      source={require('../../assets/event1.png')}
+      source={require('../../assets/pizza.png')}
       style={styles.backgroundImage}
-      resizeMode="cover">
-      <View style={styles.container}>
-        <Image
-          source={require('../../assets/sports.png')}
-          style={styles.sportImg}
-        />
-        <ImageBackground
-          source={require('../../assets/sticker.png')}
-          resizeMode={'cover'}
-          style={styles.stickerImg}>
-          <View style={styles.overlay}>
-            <Text style={styles.text}>
-              Не упустите шанспровести незабываемый вечер в веселой и дружеской
-              атмосфере нашего ресторана!
-            </Text>
-          </View>
-        </ImageBackground>
-      </View>
-    </ImageBackground>
+      resizeMode="cover"
+    />
   );
 };
 

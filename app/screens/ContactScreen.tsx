@@ -33,10 +33,11 @@ const ContactScreen = ({navigation}: any) => {
           <View style={styles.formContainer}>
             <TextInput
               style={styles.input}
-              placeholder="Имя"
+              placeholder="Москва"
               placeholderTextColor={COLORS.gray}
               value={values.name}
               onChangeText={handleChange('name')}
+              editable={false}
             />
             {touched.name && errors.name && (
               <Text style={styles.error}>{errors.name}</Text>
@@ -44,12 +45,13 @@ const ContactScreen = ({navigation}: any) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Email"
+              placeholder="Славянская площадь, 2"
               placeholderTextColor={COLORS.gray}
               value={values.email}
               onChangeText={handleChange('email')}
               keyboardType="email-address"
               autoCapitalize="none"
+              editable={false}
             />
             {touched.email && errors.email && (
               <Text style={styles.error}>{errors.email}</Text>
@@ -57,34 +59,33 @@ const ContactScreen = ({navigation}: any) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Тема"
+              placeholder="Метро Китай-город"
               placeholderTextColor={COLORS.gray}
               value={values.subject}
               onChangeText={handleChange('subject')}
+              editable={false}
             />
             {touched.subject && errors.subject && (
               <Text style={styles.error}>{errors.subject}</Text>
             )}
 
             <TextInput
-              style={[styles.input, styles.messageInput]}
-              placeholder="Сообщение"
+              style={styles.input}
+              placeholder="+7 985 883 85 64"
               placeholderTextColor={COLORS.gray}
               value={values.message}
               onChangeText={handleChange('message')}
-              multiline
-              numberOfLines={4}
+              editable={false}
             />
             {touched.message && errors.message && (
               <Text style={styles.error}>{errors.message}</Text>
             )}
-
-            <View style={styles.buttonContainer}>
-              <CustomButton title="НА ГЛАВНУЮ" onPress={handleSubmit} />
-            </View>
           </View>
         )}
       </Formik>
+      <View style={styles.buttonContainer}>
+        <CustomButton title="Главная" onPress={handleSubmit} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 1,
     borderColor: COLORS.primary,
-    borderRadius: 25,
+    borderRadius: 8,
     paddingHorizontal: 20,
     marginBottom: 10,
     color: COLORS.black,
@@ -129,10 +130,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   buttonContainer: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
+    alignItems: 'center',
   },
 });
 

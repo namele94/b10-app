@@ -4,8 +4,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {observer} from 'mobx-react-lite';
 import {useStore} from '../../stores/StoreContext';
 import COLORS from '../../styles/colors';
-import ItemView from '../../components/ItemView.tsx';
 import CustomButton from '../../components/CustomButton.tsx';
+import CartItemView from '../../components/CartItemView.tsx';
 
 const CartScreen = ({navigation}: any) => {
   const {productStore} = useStore();
@@ -22,15 +22,23 @@ const CartScreen = ({navigation}: any) => {
         <FlatList
           data={cart}
           keyExtractor={item => item.id}
-          renderItem={({item}) => <ItemView item={item} />}
+          renderItem={({item}) => <CartItemView item={item} />}
           ListEmptyComponent={<EmptyCartView />}
         />
+
         {cartTotal && (
-          <CustomButton
-            onPress={navigateToConfirmScreen}
-            title={'ИТОГО'}
-            secondTitle={`$${cartTotal}`}
-          />
+          <View style={styles.bottomContainer}>
+            <View style={styles.totalContainer}>
+              <Text style={styles.totalText}>Итого</Text>
+              <Text style={styles.totalText}>${cartTotal}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+              <CustomButton
+                onPress={navigateToConfirmScreen}
+                title={'Разместить заказ'}
+              />
+            </View>
+          </View>
         )}
       </View>
     </SafeAreaView>
@@ -40,19 +48,17 @@ const CartScreen = ({navigation}: any) => {
 const EmptyCartView = () => {
   return (
     <View style={styles.emptyCartContainer}>
-      <Text style={styles.emptyCartTitle}>Корзина пустая</Text>
       <Image
-        source={require('../../assets/nodata.png')}
+        source={require('../../assets/trash.png')}
         style={styles.emptyCartIcon}
       />
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    backgroundColor: COLORS.whiteGB,
   },
   item: {
     flexDirection: 'row',
@@ -70,20 +76,29 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   emptyCartContainer: {
-    flex: 1,
+    paddingTop: 200,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 50,
-  },
-  emptyCartTitle: {
-    fontSize: 40,
-    color: COLORS.gray,
-    fontWeight: '600',
-    marginBottom: 40,
   },
   emptyCartIcon: {
     width: 100,
     height: 100,
+  },
+  totalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    marginBottom: 10,
+  },
+  totalText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: COLORS.primary,
+  },
+  bottomContainer: {},
+  buttonContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
 });
 

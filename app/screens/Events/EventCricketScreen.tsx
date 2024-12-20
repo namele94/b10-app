@@ -5,22 +5,10 @@ import COLORS from '../../styles/colors.ts';
 const EventCricketScreen = () => {
   return (
     <ImageBackground
-      source={require('../../assets/event3.png')}
+      source={require('../../assets/football_evening.png')}
       style={styles.backgroundImage}
-      resizeMode="cover">
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Крикетный день</Text>
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>
-            Погрузитесь в мир увлекательных крикетных матчей в атмосфере,
-            созданной специально для любителей этой игры, и насладитесь
-            изысканными блюдами!
-          </Text>
-        </View>
-      </View>
-    </ImageBackground>
+      resizeMode="cover"
+    />
   );
 };
 

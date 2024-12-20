@@ -11,10 +11,11 @@ const CartStack = () => {
   return (
     <Stack.Navigator
       screenOptions={({}) => ({
-        headerTitle: () => <HeaderLogo />,
-        headerStyle: {backgroundColor: COLORS.primary},
-        headerTintColor: COLORS.white,
+        headerStyle: {backgroundColor: COLORS.white},
+        headerTintColor: COLORS.secondary,
         headerBackTitle: '',
+        headerShadowVisible: false,
+        title: '',
       })}>
       <Stack.Screen name="Cart" component={CartScreen} />
       <Stack.Screen name="ConfirmOrder" component={ConfirmOrderScreen} />

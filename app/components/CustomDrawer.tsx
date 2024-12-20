@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import COLORS from '../styles/colors.ts';
 
 interface DrawerProps {
   navigation: any;
@@ -20,26 +21,30 @@ const CustomDrawer: React.FC<DrawerProps> = props => {
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigation.navigate('Home')}>
-          x`
-          <Text style={styles.menuText}>МАГАЗИН</Text>
+          <Text style={styles.menuText}>Главная</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate('Cart')}>
+          <Text style={styles.menuText}>Корзина</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigation.navigate('Reservation')}>
-          <Text style={styles.menuText}>БРОНЬ</Text>
+          <Text style={styles.menuText}>Резерв столика</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigation.navigate('Contact')}>
-          <Text style={styles.menuText}>КОНТАКТЫ</Text>
+          <Text style={styles.menuText}>Контакты</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.menuItem}
           onPress={() => navigation.navigate('Event')}>
-          <Text style={styles.menuText}>СОБЫТИЯ РЕСТОРАНА</Text>
+          <Text style={styles.menuText}>События ресторана</Text>
         </TouchableOpacity>
       </View>
 
@@ -58,6 +63,7 @@ const CustomDrawer: React.FC<DrawerProps> = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.greenBG,
   },
   menuHeaderContainer: {
     paddingVertical: 15,
@@ -66,38 +72,35 @@ const styles = StyleSheet.create({
     borderBottomColor: 'rgba(255, 255, 255, 0.2)',
   },
   menuHeaderText: {
-    color: '#FFF',
+    color: COLORS.white,
     fontSize: 16,
   },
   logoContainer: {
     alignItems: 'center',
     paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255, 255, 255, 0.2)',
-    backgroundColor: '#5C0DAC',
   },
   logo: {
-    width: 200,
-    height: 60,
+    width: 250,
+    height: 80,
     resizeMode: 'contain',
   },
   menuContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.greenBG,
     paddingTop: 40,
     paddingHorizontal: 20,
   },
   menuItem: {
     paddingVertical: 15,
     paddingHorizontal: 20,
-    backgroundColor: '#300264',
+    backgroundColor: COLORS.lightGray,
     borderRadius: 25,
     marginBottom: 10,
   },
   menuText: {
-    color: '#FFF',
+    color: COLORS.secondary,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
   },
   footer: {

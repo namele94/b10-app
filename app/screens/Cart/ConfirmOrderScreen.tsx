@@ -1,39 +1,33 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import COLORS from '../../styles/colors.ts';
+import CustomButton from '../../components/CustomButton.tsx';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const qrValue =
   'https://www.wondercide.com/cdn/shop/articles/Upside_down_gray_cat.png?v=1685551065&width=1100';
 
 const ConfirmOrderScreen = ({navigation}: any) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.successIconContainer}>
-        <View style={styles.successIcon}>
-          <Image
-            source={require('../../assets/success.png')}
-            style={styles.checkIcon}
+    <SafeAreaView edges={['bottom']} style={styles.container}>
+      <View style={styles.container}>
+        <Text style={styles.successText}>{'Спасибо! \n Заказ выполнен'}</Text>
+
+        <View style={styles.qrContainer}>
+          <QRCode
+            value={qrValue}
+            size={160}
+            color={COLORS.primary}
+            backgroundColor="#fff"
           />
         </View>
       </View>
-
-      <Text style={styles.successText}>Ваш заказ успешно{'\n'}размещен</Text>
-
-      <View style={styles.qrContainer}>
-        <QRCode
-          value={qrValue}
-          size={200}
-          color="#000"
-          backgroundColor="#fff"
-        />
-      </View>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('DrawerScreens')}>
-        <Text style={styles.buttonText}>НА ГЛАВНУЮ</Text>
-      </TouchableOpacity>
-    </View>
+      <CustomButton
+        onPress={() => navigation.navigate('DrawerScreens')}
+        title={'ГЛАВНАЯ'}
+      />
+    </SafeAreaView>
   );
 };
 
@@ -43,35 +37,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
   },
-  logoContainer: {
-    width: '100%',
-    alignItems: 'center',
-    paddingVertical: 20,
-  },
-  logo: {
-    width: 150,
-    height: 40,
-    resizeMode: 'contain',
-  },
-  successIconContainer: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  successIcon: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: '#FFA500',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkIcon: {
-    width: 40,
-    height: 40,
-    tintColor: '#fff',
-  },
   successText: {
+    marginTop: 40,
+    color: COLORS.primary,
     fontSize: 24,
+    fontWeight: '900',
     textAlign: 'center',
     marginBottom: 30,
     lineHeight: 32,
@@ -80,14 +50,6 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
     marginBottom: 40,
   },
   button: {

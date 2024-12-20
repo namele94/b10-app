@@ -12,10 +12,10 @@ const ReservationSuccessScreen = ({navigation}: any) => {
   return (
     <SafeAreaView edges={['bottom']} style={styles.container}>
       <View style={styles.container}>
-        <Image source={require('../assets/check.png')} style={styles.icon} />
-        <Text style={styles.title}>Ваш резерв успешно размещен</Text>
+        <Image source={require('../assets/success.png')} style={styles.icon} />
+        <Text style={styles.title}>{'Спасибо!\nСтол зарезервирован'}</Text>
       </View>
-      <CustomButton onPress={navToMain} title={'НА ГЛАВНУЮ'} />
+      <CustomButton onPress={navToMain} title={'Главная'} />
     </SafeAreaView>
   );
 };
@@ -28,14 +28,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   title: {
-    fontSize: 30,
-    fontWeight: '600',
+    fontSize: 24,
+    fontWeight: '900',
     textAlign: 'center',
   },
   icon: {
-    width: 150,
-    height: 150,
-    marginBottom: 80,
+    width: 300,
+    height: 300,
   },
 });
 

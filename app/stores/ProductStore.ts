@@ -8,6 +8,8 @@ interface CartItem extends Product {
 
 class ProductStore {
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  activeFilter: string = 'Все';
   cart: CartItem[] = [];
   error: string | null = null;
 
@@ -18,7 +20,24 @@ class ProductStore {
   loadProducts = () => {
     try {
       this.products = mockProducts;
+      this.filteredProducts = mockProducts;
     } catch (error: any) {}
+  };
+
+  setFilter = (filter: string) => {
+    this.activeFilter = filter;
+    console.log('filter', filter);
+    this.applyFilter();
+  };
+
+  private applyFilter = () => {
+    if (this.activeFilter === 'Все') {
+      this.filteredProducts = mockProducts;
+    } else {
+      this.filteredProducts = mockProducts.filter(
+        product => product.category === this.activeFilter.toLowerCase(),
+      );
+    }
   };
 
   handlePlus = (product: Product) => {

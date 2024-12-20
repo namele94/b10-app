@@ -1,23 +1,14 @@
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, StyleSheet} from 'react-native';
 import React from 'react';
 import COLORS from '../../styles/colors.ts';
 
 const EventRugbyScreen = () => {
   return (
     <ImageBackground
-      source={require('../../assets/event3.png')}
+      source={require('../../assets/branch.png')}
       style={styles.backgroundImage}
-      resizeMode="cover">
-      <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Регби-вечер</Text>
-        </View>
-        <Text style={styles.text}>
-          Насладитесь захватывающими трансляциями важнейших регбийных матчей в
-          атмосфере настоящего спортивного духа
-        </Text>
-      </View>
-    </ImageBackground>
+      resizeMode="cover"
+    />
   );
 };
 

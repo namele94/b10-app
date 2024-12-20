@@ -1,11 +1,11 @@
 import React from 'react';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from '../screens/HomeScreen';
 import ReservationScreen from '../screens/ReservationScreen';
 import EventsScreen from '../screens/EventsScreen';
 import CustomDrawer from '../components/CustomDrawer';
 import COLORS from '../styles/colors.ts';
-import HeaderLogo from '../components/HeaderLogo.tsx';
 import ContactScreen from '../screens/ContactScreen.tsx';
 
 const Drawer = createDrawerNavigator();
@@ -15,20 +15,72 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}
       screenOptions={({navigation}) => ({
-        headerTitle: () => (
-          <HeaderLogo navToCart={() => navigation.navigate('Cart')} />
+        headerStyle: {backgroundColor: COLORS.white},
+        headerTintColor: COLORS.secondary,
+        headerShadowVisible: false,
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={navigation.toggleDrawer}
+            style={styles.leftIconContainer}>
+            <Image
+              source={require('../assets/menuicon.png')}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         ),
-        headerStyle: {backgroundColor: COLORS.primary},
-        headerTintColor: COLORS.white,
-        drawerActiveTintColor: COLORS.primary,
-        drawerInactiveTintColor: 'gray',
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Cart')}
+            style={styles.cartIconContainer}>
+            <Image
+              source={require('../assets/cart.png')}
+              style={styles.icon}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        ),
       })}>
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="Reservation" component={ReservationScreen} />
-      <Drawer.Screen name="Event" component={EventsScreen} />
-      <Drawer.Screen name="Contact" component={ContactScreen} />
+      <Drawer.Screen
+        options={{title: 'Какую еду вы хотите?'}}
+        name="Home"
+        component={HomeScreen}
+      />
+      <Drawer.Screen
+        options={{
+          headerTitle: '',
+          headerTransparent: true,
+          headerStyle: {
+            backgroundColor: 'transparent',
+          },
+        }}
+        name="Event"
+        component={EventsScreen}
+      />
+      <Drawer.Screen
+        options={{headerTitle: ''}}
+        name="Reservation"
+        component={ReservationScreen}
+      />
+      <Drawer.Screen
+        options={{headerTitle: ''}}
+        name="Contact"
+        component={ContactScreen}
+      />
     </Drawer.Navigator>
   );
 };
 
 export default DrawerNavigator;
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  },
+  cartIconContainer: {
+    paddingRight: 12,
+  },
+  leftIconContainer: {
+    marginLeft: 12,
+  },
+});

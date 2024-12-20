@@ -15,9 +15,9 @@ const Stack = createStackNavigator();
 
 const DEFAUL_HEADER = {
   headerBackTitle: '',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTintColor: COLORS.white,
-  headerTitle: () => <HeaderLogo />,
+  headerStyle: {backgroundColor: COLORS.white},
+  headerTintColor: COLORS.secondary,
+  headerTitle: '',
 };
 
 const AppNavigator = () => {
@@ -46,22 +46,49 @@ const AppNavigator = () => {
         <Stack.Screen
           name="EventGameScreen"
           component={EventGameScreen}
-          options={{...DEFAUL_HEADER}}
+          options={{
+            ...DEFAUL_HEADER,
+            headerTransparent: true,
+            headerStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}
         />
         <Stack.Screen
           name="EventMovieScreen"
           component={EventMovieScreen}
-          options={{...DEFAUL_HEADER}}
+          options={{
+            ...DEFAUL_HEADER,
+            headerTintColor: COLORS.white,
+            headerTransparent: true,
+            headerStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}
         />
         <Stack.Screen
           name="EventRugbyScreen"
           component={EventRugbyScreen}
-          options={{...DEFAUL_HEADER}}
+          options={{
+            ...DEFAUL_HEADER,
+            headerTintColor: COLORS.white,
+            headerTransparent: true,
+            headerStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}
         />
         <Stack.Screen
           name="EventCricketScreen"
           component={EventCricketScreen}
-          options={{...DEFAUL_HEADER}}
+          options={{
+            ...DEFAUL_HEADER,
+            headerTintColor: COLORS.white,
+            headerTransparent: true,
+            headerStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

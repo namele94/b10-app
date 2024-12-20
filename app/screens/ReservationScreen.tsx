@@ -9,9 +9,8 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 const ReservationSchema = Yup.object().shape({
   name: Yup.string().required('Введите имя'),
   phone: Yup.string().required('Введите телефон'),
-  email: Yup.string().email('Неверный формат email').required('Введите email'),
-  guests: Yup.string().required('Введите количество гостей'),
   date: Yup.string().required('Введите дату'),
+  comment: Yup.string().required('Введите комментарий'),
 });
 
 const ReservationScreen = ({navigation}: any) => {
@@ -21,14 +20,13 @@ const ReservationScreen = ({navigation}: any) => {
 
   return (
     <SafeAreaView edges={['bottom']} style={styles.container}>
-      <Text style={styles.title}>Зарезервировать столик</Text>
+      <Text style={styles.title}>Резервирование стола</Text>
       <Formik
         initialValues={{
           name: '',
           phone: '',
-          email: '',
-          guests: '',
           date: '',
+          comment: '',
         }}
         validationSchema={ReservationSchema}
         onSubmit={handleSubmit}>
@@ -36,7 +34,7 @@ const ReservationScreen = ({navigation}: any) => {
           <View style={styles.formContainer}>
             <TextInput
               style={styles.input}
-              placeholder="Имя"
+              placeholder="Полное имя"
               placeholderTextColor={COLORS.gray}
               value={values.name}
               onChangeText={handleChange('name')}
@@ -59,31 +57,6 @@ const ReservationScreen = ({navigation}: any) => {
 
             <TextInput
               style={styles.input}
-              placeholder="Email"
-              placeholderTextColor={COLORS.gray}
-              value={values.email}
-              onChangeText={handleChange('email')}
-              keyboardType="email-address"
-              autoCapitalize="none"
-            />
-            {touched.email && errors.email && (
-              <Text style={styles.error}>{errors.email}</Text>
-            )}
-
-            <TextInput
-              style={styles.input}
-              placeholder="Гости"
-              placeholderTextColor={COLORS.gray}
-              value={values.guests}
-              onChangeText={handleChange('guests')}
-              keyboardType="number-pad"
-            />
-            {touched.guests && errors.guests && (
-              <Text style={styles.error}>{errors.guests}</Text>
-            )}
-
-            <TextInput
-              style={styles.input}
               placeholder="Дата"
               placeholderTextColor={COLORS.gray}
               value={values.date}
@@ -93,12 +66,23 @@ const ReservationScreen = ({navigation}: any) => {
               <Text style={styles.error}>{errors.date}</Text>
             )}
 
-            <View style={styles.buttonContainer}>
-              <CustomButton title="ЗАБРОНИРОВАТЬ" onPress={handleSubmit} />
-            </View>
+            <TextInput
+              multiline
+              style={[styles.input, styles.commentInput]}
+              placeholder="Комментарий"
+              placeholderTextColor={COLORS.gray}
+              value={values.date}
+              onChangeText={handleChange('date')}
+            />
+            {touched.date && errors.date && (
+              <Text style={styles.error}>{errors.date}</Text>
+            )}
           </View>
         )}
       </Formik>
+      <View style={{alignItems: 'center'}}>
+        <CustomButton title="ЗАБРОНИРОВАТЬ" onPress={handleSubmit} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -106,11 +90,12 @@ const ReservationScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
   },
   title: {
+    color: COLORS.primary,
     fontSize: 20,
-    fontWeight: '600',
+    fontWeight: '900',
     textAlign: 'center',
     marginVertical: 20,
   },
@@ -122,7 +107,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderWidth: 1,
     borderColor: COLORS.primary,
-    borderRadius: 25,
+    borderRadius: 8,
     paddingHorizontal: 20,
     marginBottom: 10,
     color: COLORS.black,
@@ -138,6 +123,10 @@ const styles = StyleSheet.create({
     bottom: 20,
     left: 20,
     right: 20,
+  },
+  commentInput: {
+    textAlignVertical: 'top',
+    height: 120,
   },
 });
 

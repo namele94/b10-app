@@ -1,34 +1,13 @@
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet} from 'react-native';
 import React from 'react';
 
 const EventMovieScreen = () => {
   return (
     <ImageBackground
-      source={require('../../assets/event2.png')}
+      source={require('../../assets/masterclass.png')}
       style={styles.backgroundImage}
-      resizeMode="cover">
-      <View style={styles.container}>
-        <ImageBackground
-          source={require('../../assets/sticker2.png')}
-          style={styles.stickerImg}>
-          <View style={styles.overlay}>
-            <Text style={styles.text1}>
-              Приглашаем вас на уникальный Вечер Кино с Ужином
-            </Text>
-            <Text style={styles.text}>
-              Окунитесь в мир кино и гастрономии и проведите вечер в атмосфере
-              волшебства и вкусных открытий!
-            </Text>
-          </View>
-        </ImageBackground>
-      </View>
-    </ImageBackground>
+      resizeMode="cover"
+    />
   );
 };
 
